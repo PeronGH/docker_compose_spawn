@@ -3,16 +3,19 @@ services:
   dind:
     image: docker:dind
     privileged: true
-    command: --host=tcp://0.0.0.0:2375 --tls=false
     volumes:
       - dind-storage:/var/lib/docker
+      - dind-socket:/var/run/
 
   spawn:
     build: .
     ports:
       - "8000:8000"
-    environment:
-      - DOCKER_HOST=tcp://dind:2375
+    volumes:
+      - dind-socket:/var/run/
+    depends_on:
+      - dind
 
 volumes:
   dind-storage:
+  dind-socket:
