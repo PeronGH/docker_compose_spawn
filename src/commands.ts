@@ -10,5 +10,5 @@ export function stopCommand({ name }: StopOptions) {
 }
 
 export function listCommand() {
-  return $`docker compose ls --format json`.stdout("piped");
+  return $`docker compose ls -a --format json`.stdout("piped");
 }

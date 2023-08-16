@@ -18,4 +18,6 @@ COPY . /app
 
 WORKDIR /app
 
+RUN deno cache server.ts
+
 CMD ["deno", "run", "-A", "server.ts"]
