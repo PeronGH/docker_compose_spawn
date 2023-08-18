@@ -1,7 +1,10 @@
 import { $ } from "./deps.ts";
 import { StartOptions, StopOptions } from "./types.ts";
+import { random } from "./utils.ts";
 
-export function startCommand({ name, path, env = {} }: StartOptions) {
+export function startCommand(
+  { name = random(), path, env = {} }: StartOptions,
+) {
   return $`docker compose -f ${path} -p ${name} up -d`.env(env).quiet("stdout");
 }
 

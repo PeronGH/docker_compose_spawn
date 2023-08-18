@@ -1,12 +1,11 @@
 import { check, list, start } from "./mod.ts";
 import { stop } from "./src/main.ts";
-
-const random = () => Math.random().toString(36).slice(2);
+import { random } from "./src/utils.ts";
 
 Deno.test("docker_compose_spawn", async () => {
   if (!await check()) throw "docker compose v2 not set up";
 
-  if (await start({ name: random(), path: "/dev/null" })) {
+  if (await start({ path: "/dev/null" })) {
     throw "it should not start instance with non-exist config";
   }
 

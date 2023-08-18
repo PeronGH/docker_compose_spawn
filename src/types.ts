@@ -1,6 +1,6 @@
 export type StartOptions = {
   /** project name */
-  name: string;
+  name?: string;
   /** path to compose file */
   path: string;
   /** environment variables */

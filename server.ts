@@ -10,13 +10,16 @@ if (!await check()) {
 
 const app = new Hono();
 
+// List instances
 app.get("/instances", async (c) => c.json(await list()));
 
+// Start new instance
 app.post(
   "/instances",
   async (c) => c.json({ success: await start(await c.req.json()) }),
 );
 
+// Stop instance
 app.delete(
   "/instances/:name",
   async (c) => c.json({ success: await stop(c.req.param()) }),
